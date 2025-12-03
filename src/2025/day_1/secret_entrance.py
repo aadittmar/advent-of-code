@@ -59,10 +59,12 @@ class Lock:
 
     @staticmethod
     def get_rotation_sequence_from_input_file() -> List[str]:
-        # Use path relative to this source file so the file is found even if
-        # the script is run from a different working directory.
+        src_dir: Path = Path(__file__).parent
+        input_path: Path = src_dir / "rotation_sequence.txt"
 
+        text: str = input_path.read_text(encoding="utf-8").strip()
 
+        return [line.strip() for line in text.splitlines() if line.strip() != ""]
 
 
 if __name__ == "__main__":
