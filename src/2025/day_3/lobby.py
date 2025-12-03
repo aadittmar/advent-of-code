@@ -29,16 +29,16 @@ class BatteryBank:
     def find_biggest_sum(self, bank: str, iterations: int) -> int:
         biggest_sum: List[str] = []
 
-        first_iteration = True
-        last_index = 0
-        start_index = 0
+        first_iteration: bool = True
+        last_index: int = 0
+        start_index: int = 0
 
         for i in range(iterations):
 
             if not first_iteration:
                 start_index = last_index + 1
 
-            amount_from_end = -(iterations - i - 1)
+            amount_from_end: int = -(iterations - i - 1)
 
             biggest_number, last_index = self.find_next_biggest_number(
                 bank=bank,
@@ -57,15 +57,15 @@ class BatteryBank:
     def find_next_biggest_number(
         bank: str, start_index: int, first_iteration: bool, amount_from_end: int
     ) -> tuple[str, int]:
-        end = None if amount_from_end == 0 else amount_from_end
+        end: int | None = None if amount_from_end == 0 else amount_from_end
 
-        slice_start = 0 if first_iteration else start_index
-        bank_slice = bank[slice_start:end]
+        slice_start: int = 0 if first_iteration else start_index
+        bank_slice: str = bank[slice_start:end]
 
-        next_biggest_number = max(bank_slice, key=int)
+        next_biggest_number: str = max(bank_slice, key=int)
 
-        index_in_slice = bank_slice.index(next_biggest_number)
-        next_biggest_number_index = slice_start + index_in_slice
+        index_in_slice: int = bank_slice.index(next_biggest_number)
+        next_biggest_number_index: int = slice_start + index_in_slice
 
         return next_biggest_number, next_biggest_number_index
 
