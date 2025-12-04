@@ -1,5 +1,6 @@
-from pathlib import Path
 from typing import List
+
+from src.utils.utils import get_input_file
 
 
 class BatteryBank:
@@ -71,12 +72,11 @@ class BatteryBank:
 
     @staticmethod
     def get_battery_banks() -> List[str]:
-        src_dir: Path = Path(__file__).parent
-        input_path: Path = src_dir / "banks.txt"
-
-        text: str = input_path.read_text(encoding="utf-8").strip()
-
-        return [line.strip() for line in text.splitlines() if line.strip() != ""]
+        return [
+            line.strip()
+            for line in get_input_file(__file__).splitlines()
+            if line.strip() != ""
+        ]
 
 
 if __name__ == "__main__":

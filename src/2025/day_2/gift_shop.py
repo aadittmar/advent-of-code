@@ -1,7 +1,8 @@
 import math
 import time
-from pathlib import Path
 from typing import List
+
+from src.utils.utils import get_input_file
 
 
 class ProductIdScrubber:
@@ -42,12 +43,7 @@ class ProductIdScrubber:
         print(f"Second part time: {elapsed:.6f}s")
 
     def get_product_ids(self) -> None:
-        src_dir: Path = Path(__file__).parent
-        input_path: Path = src_dir / "product_id_ranges.txt"
-
-        text: str = input_path.read_text(encoding="utf-8").strip()
-
-        for product_id_range in text.split(","):
+        for product_id_range in get_input_file(__file__).split(","):
             self.product_ids = [
                 *self.product_ids,
                 *self.get_ids_from_range(product_id_range),
